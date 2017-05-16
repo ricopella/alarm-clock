@@ -1,0 +1,22 @@
+.clockView {
+padding: 5%;
+background-color: black;
+}
+
+#secondRow {
+margin-top: 2%;
+}
+
+.alarmText {
+font-family: 'Orbitron', sans-serif;
+color: green;
+font-size: 60px;
+}
+
+form {
+padding: 2%;
+}
+
+img {
+width: 33%;
+}
