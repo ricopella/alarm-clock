@@ -3,12 +3,13 @@ var $minuteElement = $("#minutes");
 var $secondElement = $("#seconds");
 var $meridianElement = $("#ampm");
 var alarmObj = {
-                    "hour": "00",
-                    "minutes": "00",
-                    "seconds": "00",
-                    "meridian": "AM"
-                };
+    "hour": "00",
+    "minutes": "00",
+    "seconds": "00",
+    "meridian": "AM"
+};
 var alarmArray = [];
+var sound = new Audio('assets/audio/default.mp3')
 
 function setTime() {
     var objTime = new Date();
@@ -35,11 +36,12 @@ $(document).ready(function() {
             var alarmSeconds = Math.round(alarmTime.getTime() / 1000);
 
             if (alarmSeconds === nowSeconds) {
-            	setImage("alarm");
+                sound.play();
+                setImage("alarm");
 
-              	setTimeout(function () {
-                	setImage("");
-              	}, 5000);
+                setTimeout(function() {
+                    setImage("");
+                }, 5000);
             }
         }
 
@@ -47,16 +49,16 @@ $(document).ready(function() {
     }, 1000);
 });
 
-$('#set-time').on('click', function (){
-  var hours = $('#dd-hours :checked').val();
-  var mins = $('#dd-minutes :checked').val();
-  var amPM = $('#dd-ampm :checked').val();
-  var alrm = new Object(alarmObj);
+$('#set-time').on('click', function() {
+    var hours = $('#dd-hours :checked').val();
+    var mins = $('#dd-minutes :checked').val();
+    var amPM = $('#dd-ampm :checked').val();
+    var alrm = new Object(alarmObj);
 
-  $('#saved').append("<li>" + hours + ":" + mins + " " + amPM + "</li>");
-  alrm.Hour = $("#dd-ampm :checked").val() === "AM" ? $("#dd-hours :checked").val() : parseInt($("#dd-hours :checked").val()) + 12;
-  alrm.Minutes = $("#dd-minutes :checked").val();
-  alrm.Seconds = $("#dd-seconds :checked").val();
-  alrm.Meridian = $("#dd-ampm :checked").val();
-  alarmArray.push(alrm);
+    $('#saved').append("<li>" + hours + ":" + mins + " " + amPM + "</li>");
+    alrm.Hour = $("#dd-ampm :checked").val() === "AM" ? $("#dd-hours :checked").val() : parseInt($("#dd-hours :checked").val()) + 12;
+    alrm.Minutes = $("#dd-minutes :checked").val();
+    alrm.Seconds = $("#dd-seconds :checked").val();
+    alrm.Meridian = $("#dd-ampm :checked").val();
+    alarmArray.push(alrm);
 });
