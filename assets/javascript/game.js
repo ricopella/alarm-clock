@@ -14,8 +14,8 @@ var sound = new Audio('assets/audio/default.mp3')
 function setTime() {
     var objTime = new Date();
     $hourElement.html(objTime.getHours() > 12 ? objTime.getHours() - 12 : objTime.getHours());
-    $minuteElement.html(objTime.getMinutes());
-    $secondElement.html(objTime.getSeconds());
+    $minuteElement.html(objTime.getMinutes() < 10 ? "0" + objTime.getMinutes() : objTime.getMinutes());
+    $secondElement.html(objTime.getSeconds() < 10 ? "0" + objTime.getSeconds() : objTime.getSeconds());
     $meridianElement.html(objTime.getHours() >= 24 ? "AM" : "PM");
 }
 
